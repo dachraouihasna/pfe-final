@@ -7,7 +7,7 @@ import { BorderBottom } from "@mui/icons-material";
 
 const Customers = () => {
   const theme = useTheme();
-  const { data, isLoading } = useGetCustomersQuery();
+const { data, isLoading } = useGetCustomersQuery();
   console.log("data", data);
 
   const columns = [
@@ -86,12 +86,13 @@ const Customers = () => {
           },
         }}
       >
-        <DataGrid
-          loading={isLoading || !data}
+        {/* <DataGrid
           getRowId={(row) => row._id}
-          rows={data || []}
+          rows={data|| []}
           columns={columns}
-        />
+          pageSize={10}
+          pagination
+        /> */}
       </Box>
     </Box>
   );

@@ -12,7 +12,7 @@ const Daily = () => {
   const { data } = useGetSalesQuery();
   const theme = useTheme();
 
-  const [formattedData] = useMemo(() => {
+  const formattedData = useMemo(() => {
     if (!data) return [];
 
     const { dailyData } = data;
@@ -30,7 +30,7 @@ const Daily = () => {
     Object.values(dailyData).forEach(({ date, totalSales, totalUnits }) => {
       const dateFormatted = new Date(date);
       if (dateFormatted >= startDate && dateFormatted <= endDate) {
-        const splitDate = date.substring(date.ndexOf("-") + 1);
+        const splitDate = date.substring(date.indexOf("-") + 1);
 
         totalSalesLine.data = [
           ...totalSalesLine.data,
@@ -43,11 +43,10 @@ const Daily = () => {
       }
     });
 
-    const formattedData = [totalSalesLine, totalUnitsLine];
+   
 
-    return [[formattedData]];
-  }, [data, startDate, endDate]); // eslint-disable-line
-  //react_hooks/exhaustive-deps
+    return [totalSalesLine, totalUnitsLine];
+  }, [data, theme.palette.secondary, startDate, endDate]); 
 
   return (
     <Box m="1.5rem 2.5rem">
@@ -76,7 +75,7 @@ const Daily = () => {
         </Box>
         {data ? (
           <ResponsiveLine
-            data={formattedData}
+            data={formattedData? formattedData : []}
             theme={{
               axis: {
                 domain: {

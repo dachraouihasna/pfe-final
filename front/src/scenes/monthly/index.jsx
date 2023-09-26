@@ -7,8 +7,8 @@ import { ResponsiveLine } from "@nivo/line";
 const Monthly = () => {
   const { data } = useGetSalesQuery();
   const theme = useTheme();
-
-  const [formattedData] = useMemo(() => {
+  console.log(data);
+  const formattedData = useMemo(() => {
     if (!data) return [];
 
     const { monthlyData } = data;
@@ -33,12 +33,9 @@ const Monthly = () => {
         { x: month, y: totalUnits },
       ];
     });
-
-    const formattedData = [totalSalesLine, totalUnitsLine];
-
-    return [[formattedData]];
-  }, [data]); // eslint-disable-line
-  //react_hooks/exhaustive-deps
+    return [totalSalesLine, totalUnitsLine];
+  }, [data, theme.palette.secondary]);
+  console.log(formattedData); 
 
   return (
     <Box m="1.5rem 2.5rem">
@@ -46,7 +43,7 @@ const Monthly = () => {
       <Box height="75vh">
         {data ? (
           <ResponsiveLine
-            data={formattedData}
+            data={formattedData ? formattedData : []}
             theme={{
               axis: {
                 domain: {

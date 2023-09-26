@@ -7,7 +7,7 @@ const OverviewChart = ({ isDashboard = false, view }) => {
   const theme = useTheme();
   const { data, isLoading } = useGetSalesQuery();
 
-  const [totalSalesLine, totalUnitsLine] = useMemo(() => {
+  const dataView = useMemo(() => {
     if (!data) return [];
 
     const { monthlyData } = data;
@@ -41,15 +41,14 @@ const OverviewChart = ({ isDashboard = false, view }) => {
       { sales: 0, units: 0 }
     );
 
-    return [{ totalSalesLine }, { totalUnitsLine }];
-  }, [data]); // eslint-disable-line
-  //react-hook/exhaustive-deps
-
-  if (!data || isLoading) return "Loading...";
+    return [totalSalesLine, totalUnitsLine];
+  }, [data, theme.palette.secondary]); 
+console.log(dataView)
+  if (!data || isLoading||!dataView) return "Loading...";
 
   return (
     <ResponsiveLine
-      data={view === "sales" ? totalSalesLine : totalUnitsLine}
+      data={view === "sales" ? [dataView[0]] : [dataView[1]]}
       theme={{
         axis: {
           domain: {

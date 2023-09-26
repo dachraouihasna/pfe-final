@@ -9,14 +9,14 @@ const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 const connectDB = require("./config/ConnectDB");
-const {
-  dataAffiliateStat,
-  dataProduct,
-  dataOverallStat,
-  dataProductStat,
-  dataTransaction,
-  dataUser,
-} = require("./data");
+// const {
+//   dataAffiliateStat,
+//   dataProduct,
+//   dataOverallStat,
+//   dataProductStat,
+//   dataTransaction,
+//   dataUser,
+// } = require("./data");
 /*CONFIGURATION*/
 const app = express();
 connectDB();
