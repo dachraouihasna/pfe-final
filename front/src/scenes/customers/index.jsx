@@ -3,7 +3,6 @@ import { Box, useTheme } from "@mui/material";
 import { useGetCustomersQuery } from "state/api";
 import Header from "component/Header";
 import { DataGrid } from "@mui/x-data-grid";
-import { BorderBottom } from "@mui/icons-material";
 
 const Customers = () => {
   const theme = useTheme();
@@ -25,11 +24,6 @@ const { data, isLoading } = useGetCustomersQuery();
       field: "email",
       headerName: "Email",
       flex: 1,
-    },
-    {
-      field: "phoneNumber",
-      headerName: "Phone Number",
-      flex: 0.5,
     },
     {
       field: "phoneNumber",
@@ -86,13 +80,20 @@ const { data, isLoading } = useGetCustomersQuery();
           },
         }}
       >
-        {/* <DataGrid
-          getRowId={(row) => row._id}
-          rows={data|| []}
-          columns={columns}
-          pageSize={10}
-          pagination
-        /> */}
+       {/*Remove this error :        // I got error : Maximum call stack size exceeded
+RangeError: Maximum call stack size exceeded*/}
+
+<DataGrid
+  rows={data ? data : []}
+  getRowId={(row) => row._id} // Assuming your data has an 'id' field
+  columns={columns}
+  pageSize={10}
+  rowsPerPageOptions={[10]}
+  disableSelectionOnClick
+  loading={isLoading}
+/>
+
+
       </Box>
     </Box>
   );

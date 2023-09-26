@@ -191,7 +191,7 @@ const Dashboard = () => {
               <DataGrid
                 loading={isLoading || !data}
                 getRowId={(row) => row._id}
-                rows={(data && data?.Transactions) || []}
+                rows={(data && data?.transactions) || []}
                 columns={columns}
               />
             </Box>

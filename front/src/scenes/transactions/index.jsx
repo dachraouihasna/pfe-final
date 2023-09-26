@@ -84,7 +84,7 @@ const Transactions = () => {
         <DataGrid
           loading={isLoading || !data}
           getRowId={(row) => row._id}
-          rows={(data && data.Transactions) || []}
+          rows={(data && data.transactions) || []}
           columns={columns}
           rowCount={(data && data.total) || 0}
           rowsPerPageOptions={[20, 50, 100]}
