@@ -13,6 +13,8 @@ import {
 } from "@mui/material";
 import Header from "component/Header";
 import { useGetProductsQuery } from "state/api";
+import { Link } from "react-router-dom";
+
 
 const Product = ({
   _id,
@@ -86,12 +88,27 @@ const Product = ({
 };
 
 const Products = () => {
+  const theme = useTheme();
   const { data, isLoading } = useGetProductsQuery();
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
   return (
     <Box m="1.5rem 2.5rem">
       <Header title="PRODUCTS" subtitle="See your list of products" />
+      <br/>
+      <Link to="/AddProduct">
+        <Button
+          sx={{
+            backgroundColor: theme.palette.secondary.light,
+            color: theme.palette.background.alt,
+            fontSize: "14px",
+            fontWeight: "bold",
+            padding: "10px 20px",
+          }}
+        >
+          Add New Product
+        </Button>
+      </Link>
       {data || !isLoading ? (
         <Box
           mt="20px"
