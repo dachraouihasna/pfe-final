@@ -18,11 +18,12 @@ import Admin from "scenes/admin";
 import Performance from "scenes/performance";
 import Login from "scenes/login";
 import ForgotPassword from "scenes/admin/forgotPassword";
+import ResetPassword from "scenes/admin/resetPassword";
 import Register from "scenes/admin/register";
 import Departements from "scenes/departement";
 import Administration from "scenes/departement/Administration";
-import ResetPassword from "scenes/admin/resetPassword";
 import AddProduct from "scenes/products/addPoducts";
+import UpdateProduct from "scenes/products/updateProduct";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -43,6 +44,7 @@ function App() {
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/products" element={<Products />} />
+              <Route path="/update/:id" element={<UpdateProduct/>}/>
               <Route path="/addproduct" element={<AddProduct />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/transactions" element={<Transactions />} />

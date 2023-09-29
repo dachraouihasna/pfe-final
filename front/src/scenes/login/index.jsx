@@ -6,7 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import { MenuItem, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -135,6 +135,9 @@ export default function Login({ history }) {
                 backgroundColor: theme.palette.secondary.light,
                 color: theme.palette.background.alt,
               }}
+              onClick={(e)=> {
+                e.preventDefault();
+                dispatch (login(user,history, dispatch))}}
             >
               Log In
             </Button>
