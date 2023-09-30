@@ -27,6 +27,11 @@ const Admin = () => {
       flex: 1,
     },
     {
+      field: "password",
+      headerName: "Password",
+      flex: 1,
+    },
+    {
       field: "phoneNumber",
       headerName: "Phone Number",
       flex: 1,
@@ -59,6 +64,7 @@ const Admin = () => {
       headerName: "Actions",
       flex: 1,
     },
+   
   ];
 
   return (
