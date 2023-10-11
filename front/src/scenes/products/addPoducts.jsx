@@ -14,6 +14,8 @@ import Container from "@mui/material/Container";
 import { ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { addProduct } from "redux/actions/productActions";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Copyright(props) {
   return (
@@ -38,22 +40,17 @@ function Copyright(props) {
 export default function AddProduct() {
   const theme = useTheme();
   const dispatch = useDispatch();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    dispatch(
-      addProduct({
-        name: data.get("name"),
-        description: data.get("description"),
-        price: data.get("price"),
-        rating: data.get("rating"),
-        category: data.get("category"),
-        supply: data.get("supply"),
-        stat: data.get("stat"),
-      })
-    );
+  const [product, setProduct] = useState({
+    title: "",
+    author: "",
+  });
+  const handleChange = (event) => {
+    setProduct({
+      ...product,
+      [event.target.name]: event.target.value,
+    });
   };
+  const navigate = useNavigate();
 
   return (
     <ThemeProvider theme={theme}>
@@ -73,12 +70,7 @@ export default function AddProduct() {
           <Typography component="h1" variant="h5">
             Add Product
           </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={(event) => handleSubmit(event)}
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -88,6 +80,7 @@ export default function AddProduct() {
                   fullWidth
                   id="name"
                   label="Name"
+                  onChange={handleChange}
                   autoFocus
                 />
               </Grid>
@@ -100,6 +93,7 @@ export default function AddProduct() {
                   label="Description"
                   name="description"
                   autoComplete="description"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -111,6 +105,7 @@ export default function AddProduct() {
                   type="price"
                   id="price"
                   autoComplete="price"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -122,6 +117,7 @@ export default function AddProduct() {
                   type="rating"
                   id="rating"
                   autoComplete="rating"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -151,11 +147,11 @@ export default function AddProduct() {
                 backgroundColor: theme.palette.secondary.light,
                 color: theme.palette.background.alt,
               }}
-              //onClick={() => {
-              // dispatch(
-              //</Box>addProduct({ ...product, id: Math.random() }, dispatch)
-              // );
-              // }}
+              onClick={() => {
+                dispatch(
+                  addProduct({ ...product, id: Math.random() }, dispatch)
+                );
+              }}
             >
               Add Product
             </Button>

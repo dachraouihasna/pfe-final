@@ -29,8 +29,7 @@ function Copyright(props) {
       <Link color="inherit" href="https://mui.com/">
         Your Website
       </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
+      {new Date().getFullYear()} {"."}
     </Typography>
   );
 }
@@ -135,9 +134,10 @@ export default function Login({ history }) {
                 backgroundColor: theme.palette.secondary.light,
                 color: theme.palette.background.alt,
               }}
-              onClick={(e)=> {
+              onClick={(e) => {
                 e.preventDefault();
-                dispatch (login(user,history, dispatch))}}
+                dispatch(login(user, history, dispatch));
+              }}
             >
               Log In
             </Button>
