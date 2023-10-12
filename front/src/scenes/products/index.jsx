@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useDispatch } from "react-redux";
 import {
   Box,
   Card,
@@ -14,6 +15,7 @@ import {
 import Header from "component/Header";
 import { useGetProductsQuery } from "state/api";
 import { Link } from "react-router-dom";
+import { deleteProduct } from "redux/actions/productActions";
 
 
 const Product = ({
@@ -26,8 +28,12 @@ const Product = ({
   supply,
   stat,
 }) => {
+  
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
+  
+  
 
   return (
     <Card
@@ -56,6 +62,22 @@ const Product = ({
         <Typography variant="body2">{description}</Typography>
       </CardContent>
       <CardActions>
+        <Link to={`/update/${Product.id}`}>
+      <Button
+          variant="primary"
+          size="small"
+        >
+          Edit
+        </Button>
+        </Link>
+        <Button
+          variant="primary"
+          size="small"
+          onClick={() =>
+            dispatch(deleteProduct(Product.id))}
+        >
+          Delete
+        </Button>
         <Button
           variant="primary"
           size="small"
@@ -88,6 +110,7 @@ const Product = ({
 };
 
 const Products = () => {
+  
   const theme = useTheme();
   const { data, isLoading } = useGetProductsQuery();
   const isNonMobile = useMediaQuery("(min-width: 1000px)");

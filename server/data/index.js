@@ -1806,6 +1806,9 @@
     },
   ];
   
+
+
+  
    const dataOverallStat = [
     {
       totalCustomers: 5251,
@@ -2539,6 +2542,12 @@
     },
   ];
   
+
+
+
+
+
+
    const dataProductStat = [
     {
       _id: "6371259df03239e680000035",
@@ -12802,6 +12811,12 @@
     },
   ];
   
+
+
+
+
+
+
    const dataTransaction = [
     {
       _id: "63701d74f03239c72c000192",
@@ -17306,6 +17321,10 @@
     },
   ];
   
+
+
+
+
    const dataUser = [
     {
       _id: "63701cc1f03239c72c00017f",
