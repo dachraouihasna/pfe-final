@@ -29,7 +29,8 @@ import { logout } from "redux/actions/userActions";
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
@@ -55,7 +56,11 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             gap="3rem"
             p="0.1rem 1.5rem"
           >
-            <InputBase placeholder="Search..." />
+            <InputBase
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <IconButton>
               <Search />
             </IconButton>
@@ -119,7 +124,9 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "buttom", horizontal: "center" }}
             >
-              <MenuItem onClick={()=> dispatch(logout(navigate))}>Log Out</MenuItem>
+              <MenuItem onClick={() => dispatch(logout(navigate))}>
+                Log Out
+              </MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>

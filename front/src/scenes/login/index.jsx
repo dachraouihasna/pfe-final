@@ -39,7 +39,10 @@ function Copyright(props) {
 export default function Login({ history }) {
   const theme = useTheme();
 
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
   //const errors = useSelector((state) => state.userReducer.errors);
   const dispatch = useDispatch();
   const handleChange = (e) => {
